@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "git": "^0.1.5",
+    "experss": "^0.0.1-security",
+    "git": "^0.1.3",
     "gitt": "^1.0.0"
   }
 }
