@@ -21,13 +21,13 @@ router.get('/:id/latestBid', (req, res) => {
 router.get('/:id', (req, res) => {
     const id = req.params.id
     itemService.getById(id).then((result) => {
-        res.status(result.status).json(result.data);
+        res.status(result.status).json(result.data); 
     });
 });
 
 router.get('/', (req, res) => {
     itemService.getAll().then((result) => {
-        res.status(result.status).json(result.data);
+        res.status(result.status).json(result.data);   
     });
 });
 

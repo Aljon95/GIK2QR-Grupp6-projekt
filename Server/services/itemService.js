@@ -35,7 +35,7 @@ async function getById(id) {
     }
 }
 
-async function getAll(){
+async function getAll(){//.map(item => _formatItem(item))
     try {                                       // lägg till bud också
         const allItems = await db.item.findAll({include: [db.user]});
         return createResponseSuccess(allItems.map(item => _formatItem(item)));
@@ -122,12 +122,12 @@ function _formatItem(item) {
         title: item.title,
         createdAt: item.createdAt,
         updatedAt: item.updatedAt,
-        seller: {
-            id: item.user.id,
-            email: item.user.email,
-            firstName: item.user.firstName,
-            lastName: item.user.lastName
-        },
+        // seller: {
+        //     id: item.user.id,
+        //     email: item.user.email,
+        //     firstName: item.user.firstName,
+        //     lastName: item.user.lastName
+        // },
         bids: []
     };
     //om item har bid
