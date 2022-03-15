@@ -164,21 +164,6 @@ function _formatItem(item) {
         };
     } 
 
-async function _findOrCreateBidId(name) {
-    name = name.toLowerCase().trim();
-    const foundOrCreateBid = await db.bid.findOrCreate({where: {name}});
-
-    return foundOrCreateBid[0].id;
-}
-
-async function _addbidToitem(item, bids) {
-    if ( bids ) {
-        bids.forEach(async (bid) => {
-            const bidId = await _findOrCreatebidId(bid);
-            await item.addbid(bidId);
-        });
-    }
-}
 module.exports = {
     getById,
     getAll,
