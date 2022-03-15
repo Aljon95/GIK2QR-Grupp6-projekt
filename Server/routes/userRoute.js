@@ -15,19 +15,7 @@ const constraints = {
       message: '^E-postadressen är i ett felaktigt format.'
     }
   },
-  username: {
-    length: {
-      minimum: 3,
-      maximum: 50,
-      tooShort: '^Användarnamnet måste vara minst %{count} tecken långt.',
-      tooLong: '^Användarnamnet får inte vara längre än %{count} tecken långt.'
-    }
-  },
-  imageUrl: {
-    url: {
-      message: '^Sökvägen är felaktig.'
-    }
-  }
+
 };
 
 router.get('/:id/posts', (req, res) => {
