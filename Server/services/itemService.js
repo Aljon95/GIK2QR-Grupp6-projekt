@@ -37,12 +37,34 @@ async function getById(id) {
 
 async function getAll(){//.map(item => _formatItem(item))
     try {                                       // lägg till bud också
-        const allItems = await db.item.findAll({include: [db.user]});
+        const allItems = await db.item.findAll({
+            include: [
+            db.user, 
+            {
+                model: db.bid, 
+                include: [db.user] 
+            }
+        ]});
         return createResponseSuccess(allItems.map(item => _formatItem(item)));
     } catch (error){
         return createResponseError(error.status, error.message);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 async function addBid(id, bid){
     if(!id){
@@ -115,7 +137,7 @@ async function destroy(id){
 
 }
 
-// fixar till formateringen av inlägget
+// fixar till formateringen av item
 function _formatItem(item) {
     const cleanitem = {
         id: item.id,
