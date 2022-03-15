@@ -182,8 +182,6 @@ async function _addTagToPost(post, tags) {
     }
 }
 module.exports = {
-    getByTag,
-    getByAuthor,
     getById,
     getAll,
     addComment,
