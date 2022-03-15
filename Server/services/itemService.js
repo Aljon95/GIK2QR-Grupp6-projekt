@@ -19,65 +19,62 @@ const constraints = {
 
 async function getById(id) {
     try {
-        const post = await db.post.findOne({
+        const item = await db.item.findOne({
             where: {id},
             include: [
                 db.user, 
-                db.tag, 
                 {
-                    model: db.comment, 
+                    model: db.bid, 
                     include: [db.user] 
                 }
             ]
         });
-        return createResponseSuccess(_formatPost(post));
+        return createResponseSuccess(_formatItem(item));
     } catch (error){
         return createResponseError(error.status, error.message);
     }
 }
 
 async function getAll(){
-    try {
-        const allPosts = await db.post.findAll({include: [db.user, db.tag]});
-        return createResponseSuccess(allPosts.map(post => _formatPost(post)));
+    try {                                       // lägg till bud också
+        const allItems = await db.item.findAll({include: [db.user]});
+        return createResponseSuccess(allItems.map(item => _formatItem(item)));
     } catch (error){
         return createResponseError(error.status, error.message);
     }
 }
 
-async function addComment(id, comment){
+async function addBid(id, bid){
     if(!id){
         return createResponseError(422, 'Id is required');
     }   
     try {
-        comment.postId = id;
-        const newComment = await db.comment.create(comment);
-        return createResponseSuccess(newComment);
+        bid.itemId = id;
+        const newBid = await db.bid.create(bid);
+        return createResponseSuccess(newBid);
     } catch (error) {
         return createResponseError(error.status, error.message);
     }
 }
 
-async function create(post){
-    const invalidData = validate(post, constraints);
+async function create(item){
+    const invalidData = validate(item, constraints);
     if(invalidData){
         return createResponseError(422, invalidData);
     }   
     try {
         //await inväntar skapandet
-        const newPost = await db.post.create(post);
+        const newItem = await db.item.create(item);
 
-
-        await _addTagToPost(newPost, post.tags);
-        return createResponseSuccess(newPost);
+        return createResponseSuccess(newItem);
     } catch (error) {
         return createResponseError(error.status, error.message);
     }
     
 }
 
-async function update(post, id){
-    const invalidData = validate(post, constraints);
+async function update(item, id){
+    const invalidData = validate(item, constraints);
     if(!id) {
         return createResponseError(422, 'Id is required');
     }
@@ -85,19 +82,18 @@ async function update(post, id){
         return createResponseError(422, invalidData);
     }
     try {
-        const existingPost = await db.post.findOne({where: {id}});
-        if(!existingPost) {
-            return createResponseError(404, 'No post was found.');
+        const existingItem = await db.item.findOne({where: {id}});
+        if(!existingItem) {
+            return createResponseError(404, 'No item was found.');
         }
-        await _addTagToPost(existingPost, post.tags);
-        await db.post
-        .update(post,
+        await db.item
+        .update(item,
         {
             where: { 
                 id: id 
             }
         });
-        return createResponseMessage(200, 'Post was updated.');
+        return createResponseMessage(200, 'item was updated.');
     } catch(error) {
         return createResponseError(error.status, error.message);
     }
@@ -109,10 +105,10 @@ async function destroy(id){
         return createResponseError(422, 'Id is required');
     }
     try {
-        await db.post.destroy({
+        await db.item.destroy({
             where: {id}
         });
-        return createResponseMessage(200, 'Post was deleted.');
+        return createResponseMessage(200, 'item was deleted.');
     } catch (error) {
         return createResponseError(error.status, error.message);
     }
@@ -120,71 +116,52 @@ async function destroy(id){
 }
 
 // fixar till formateringen av inlägget
-function _formatPost(post) {
-    const cleanPost = {
-        id: post.id,
-        title: post.title,
-        body: post.body,
-        imageUrl: post.imageUrl,
-        createdAt: post.createdAt,
-        updatedAt: post.updatedAt,
-        author: {
-            id: post.user.id,
-            username: post.user.username,
-            email: post.user.email,
-            firstName: post.user.firstName,
-            lastName: post.user.lastName,
-            imageUrl: post.user.imageUrl
+function _formatItem(item) {
+    const cleanitem = {
+        id: item.id,
+        title: item.title,
+        createdAt: item.createdAt,
+        updatedAt: item.updatedAt,
+        seller: {
+            id: item.user.id,
+            email: item.user.email,
+            firstName: item.user.firstName,
+            lastName: item.user.lastName
         },
-        tags: []
+        bids: []
     };
-    //om inlägget har kommentarer
-    if (post.comments) {
-        //lägger till comment i cleanPost som en tom array
-        cleanPost.comments = [];
-        //loppar igenom comments med map, map=loop, mappar comments till cleanPost
-        post.comments.map((comment) => {
-            return (cleanPost.comments = [
-                {
-                    title: comment.title,
-                    body: comment.body,
-                    author: comment.user.username,
-                    createdAt: comment.createdAt
-                },
-                //spread operatorn för att lägga till alla kommentarer i samma array
-                ...cleanPost.comments
-            ]);
-        });
-    } 
-    // samma som med kommentarerna
-    if (post.tags) {
-        post.tags.map((tag) => {
+    //om item har bid
+    if (item.bids) {
+        //lägger till bid i cleanitem som en tom array
+        cleanitem.bids = [];
+        //loppar igenom bids med map, map=loop, mappar bids till cleanitem
+        item.bids.map((bid) => {
             
-            return(cleanPost.tags = [tag.name, ...cleanPost.tags]);
+            return(cleanitem.bids = [bid.name, ...cleanitem.bids]);
         });
-        return cleanPost;
-    }
-}
+        return cleanitem;
+        };
+    } 
 
-async function _findOrCreateTagId(name) {
+async function _findOrCreateBidId(name) {
     name = name.toLowerCase().trim();
-    const foundOrCreateTag = await db.tag.findOrCreate({where: {name}});
+    const foundOrCreateBid = await db.bid.findOrCreate({where: {name}});
 
-    return foundOrCreateTag[0].id;
+    return foundOrCreateBid[0].id;
 }
 
-async function _addTagToPost(post, tags) {
-    if ( tags ) {
-        tags.forEach(async (tag) => {
-            const tagId = await _findOrCreateTagId(tag);
-            await post.addTag(tagId);
+async function _addbidToitem(item, bids) {
+    if ( bids ) {
+        bids.forEach(async (bid) => {
+            const bidId = await _findOrCreatebidId(bid);
+            await item.addbid(bidId);
         });
     }
 }
 module.exports = {
     getById,
     getAll,
-    addComment,
+    addBid,
     create,
     update,
     destroy
