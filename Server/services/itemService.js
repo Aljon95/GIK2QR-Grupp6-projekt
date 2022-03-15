@@ -51,21 +51,6 @@ async function getAll(){//.map(item => _formatItem(item))
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 async function addBid(id, bid){
     if(!id){
         return createResponseError(422, 'Id is required');
@@ -142,14 +127,16 @@ function _formatItem(item) {
     const cleanitem = {
         id: item.id,
         title: item.title,
+        price: item.price,
+        description: item.description,
         createdAt: item.createdAt,
         updatedAt: item.updatedAt,
-        // seller: {
-        //     id: item.user.id,
-        //     email: item.user.email,
-        //     firstName: item.user.firstName,
-        //     lastName: item.user.lastName
-        // },
+        seller: {
+            id: item.user.id,
+            email: item.user.email,
+            firstName: item.user.firstName,
+            lastName: item.user.lastName
+        },
         bids: []
     };
     //om item har bid
