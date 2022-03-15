@@ -35,15 +35,12 @@ async function getById(id) {
     }
 }
 
-async function getAll(){//.map(item => _formatItem(item))
-    try {                                       // lägg till bud också
+async function getAll(){
+    try {
         const allItems = await db.item.findAll({
             include: [
-            db.user, 
-                {
-                    model: db.bid, 
-                    include: [db.user] 
-                }
+            db.user, db.bid, 
+                    
             ]});
         return createResponseSuccess(allItems.map(item => _formatItem(item)));
     } catch (error){

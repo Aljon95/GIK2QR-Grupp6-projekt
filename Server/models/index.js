@@ -31,19 +31,19 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
-db.bid.belongsTo(db.item);
+db.bid.belongsTo(db.item, {foreignKey: {allowNull: false}});
 db.item.hasMany(db.bid), {
   allowNull: false,
   onDelete: 'CASCADE'
 };
 
-db.item.belongsTo(db.user);
+db.item.belongsTo(db.user, {foreignKey: {allowNull: false}});
 db.user.hasMany(db.item), {
   allowNull: false,
   onDelete: 'CASCADE'
 };
 
-db.bid.belongsTo(db.user);
+db.bid.belongsTo(db.user, {foreignKey: {allowNull: false}});
 db.user.hasMany(db.bid), {
   allowNull: false,
   onDelete: 'CASCADE'
