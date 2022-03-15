@@ -40,11 +40,11 @@ async function getAll(){//.map(item => _formatItem(item))
         const allItems = await db.item.findAll({
             include: [
             db.user, 
-            {
-                model: db.bid, 
-                include: [db.user] 
-            }
-        ]});
+                {
+                    model: db.bid, 
+                    include: [db.user] 
+                }
+            ]});
         return createResponseSuccess(allItems.map(item => _formatItem(item)));
     } catch (error){
         return createResponseError(error.status, error.message);
