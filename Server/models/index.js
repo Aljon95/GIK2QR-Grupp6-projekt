@@ -31,6 +31,23 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
+db.bid.belongsTo(db.item);
+db.item.hasMany(db.bid), {
+  allowNull: false,
+  onDelete: 'CASCADE'
+};
+
+db.item.belongsTo(db.user);
+db.user.hasMany(db.item), {
+  allowNull: false,
+  onDelete: 'CASCADE'
+};
+
+db.bid.belongsTo(db.user);
+db.user.hasMany(db.bid), {
+  allowNull: false,
+  onDelete: 'CASCADE'
+};
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
