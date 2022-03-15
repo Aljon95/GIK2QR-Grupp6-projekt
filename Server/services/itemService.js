@@ -5,6 +5,7 @@ const {
     createResponseMessage
 } = require('../helper/responseHelper');
 const validate = require('validate.js');
+const item = require('../models/item');
 
 const constraints = {
     title: {
@@ -51,7 +52,22 @@ async function getAll(){
 async function addBid(id, bid){
     if(!id){
         return createResponseError(422, 'Id is required');
-    }   
+    } 
+    const item = await db.item.findOne({
+        where: {id},
+        include: [db.bid]
+    });
+    const itembids = item.bids;
+    let lowBid = false;
+    itembids.map((oldBid) => {
+        if (item.startingPrice > bid.amount ||  oldBid.amount > bid.amount) {
+            console.log(item.startingPrice, bid.amount)
+            lowBid = true;
+        }
+    })
+    if (lowBid) {
+        return createResponseError(422, 'Ditt bud måste vara högre än det senaste budet');
+    }
     try {
         bid.itemId = id;
         const newBid = await db.bid.create(bid);
@@ -121,10 +137,10 @@ async function destroy(id){
 
 // fixar till formateringen av item
 function _formatItem(item) {
-    const cleanitem = {
+    const cleanItem = {
         id: item.id,
         title: item.title,
-        price: item.price,
+        startingPrice: item.startingPrice,
         description: item.description,
         createdAt: item.createdAt,
         updatedAt: item.updatedAt,
@@ -133,19 +149,18 @@ function _formatItem(item) {
             email: item.user.email,
             firstName: item.user.firstName,
             lastName: item.user.lastName
-        },
-        bids: []
+        }
     };
     //om item har bid
     if (item.bids) {
         //lägger till bid i cleanitem som en tom array
-        cleanitem.bids = [];
+        cleanItem.bids = [];
         //loppar igenom bids med map, map=loop, mappar bids till cleanitem
         item.bids.map((bid) => {
             
-            return(cleanitem.bids = [bid.name, ...cleanitem.bids]);
+            return(cleanItem.bids = [bid.amount, ...cleanItem.bids]);
         });
-        return cleanitem;
+        return cleanItem;
         };
     } 
 

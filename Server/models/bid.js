@@ -11,8 +11,7 @@ module.exports = (sequelize, DataTypes) => {
             amount: {
                 type: DataTypes.DOUBLE,
                 allowNull: false,
-            },
-            timeStamp: DataTypes.DATE,
+            }
         },
         {underscored: true}
     );
