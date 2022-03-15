@@ -3,7 +3,7 @@ const {
     createResponseSuccess,
     createResponseError,
     createResponseMessage
-} = require('../helpers/responsHelper');
+} = require('../helper/responseHelper');
 const validate = require('validate.js');
 
 const constraints = {
@@ -16,26 +16,6 @@ const constraints = {
         }
     }
 };
-
-async function getByTag(tagId) {
-    try {
-        const tag = await db.tag.findOne({where: {id: tagId}});
-        const allPosts = await tag.getPosts({include: [db.user, db.tag]});
-        return createResponseSuccess(allPosts.map(post => _formatPost(post)));
-    } catch (error){
-        return createResponseError(error.status, error.message);
-    }
-}
-
-async function getByAuthor(userId) {
-    try {
-        const user = await db.user.findOne({where: {id: userId}});
-        const allPosts = await user.getPosts({include: [db.user, db.tag]});
-        return createResponseSuccess(allPosts.map(post => _formatPost(post)));
-    } catch (error){
-        return createResponseError(error.status, error.message);
-    }
-}
 
 async function getById(id) {
     try {
