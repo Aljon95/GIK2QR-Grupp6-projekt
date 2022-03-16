@@ -9,6 +9,7 @@ const [items, setitems] = useState ([]);
 const url = props.match.url;
 console.log(url);
 
+
 useEffect(() => {
     resourceModel.getAll().then(items => {
         setitems(items);
