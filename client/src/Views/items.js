@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import ResourceModel from '../models/resourceModel';
 import {Chip} from '@mui/material'
 
-export default function items(props) {
+export default function Items(props) {
 const resourceModel = new ResourceModel("items");
 const [items, setitems] = useState ([]);
 const url = props.match.url;
