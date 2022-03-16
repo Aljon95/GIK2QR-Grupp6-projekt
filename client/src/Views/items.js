@@ -2,6 +2,7 @@ import React, { useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import ResourceModel from '../models/resourceModel';
 import {Chip} from '@mui/material'
+import { borderRadius } from '@mui/system';
 
 export default function Items(props) {
 const resourceModel = new ResourceModel("items");
@@ -22,22 +23,21 @@ return (
             items.map(item => {
                 return (
                     <li key = {`item_${item.id}`}>
-                        <Link to={`/users/${item.seller.id}/items`}>
-                            Författare: {item.seller.firstName}
-                        </Link>
+                            <Link to = {`/items/${item.id}`}>Föremål: {item.title}</Link>
                         <br />
-                        {item.tags &&
-                        item.tags.map((tag) => (
-                            <Link to={`/tags/${tag}/items`}>
-                                <Chip key= {`tag_${tag}`} label={tag} color = 'secondary' />
-                            </Link>
-                        ))}
-                        <img src ={item.imageUrl}
-                        style={{width: "200px", height: '200px'}} />
+
+                        {/* <img src ={item.imageUrl} style={{width: "200px", height: '200px'}} /> */}
                         <p>
-                            <Link to = {`/items/${item.id}`}>Titel: {item.title}</Link>
+
+                            <Link to={`/users/${item.seller.id}/items`}>
+                            Säljare: {item.seller.firstName}
+                            </Link>
+                            <br/>
+                            Utgångspris: {item.startingPrice}kr
+                            <br/>
+                            Senaste bud: {item.bids[0]}kr
                         </p>
-                        <p>Skrivet: {item.createdAt}</p>
+                        <p>Upplagd: {item.createdAt}</p>
                         {item.body}
                     </li>
                 );
