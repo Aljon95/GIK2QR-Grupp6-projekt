@@ -3,10 +3,10 @@ import logo from './logo.svg';
 import './App.css';
 import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Home from './Views/Home';
-import items from './Views/items';
-import itemEdit from './Views/itemEdit';
-import itemDetail from './Views/itemDetail';
+import Home from './views/Home';
+import items from './views/items';
+import itemEdit from './views/itemEdit';
+import itemDetail from './views/itemDetail';
 
 function App() {
   return (
