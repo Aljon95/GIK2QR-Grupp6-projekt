@@ -1,3 +1,10 @@
+import React from 'react'
+
+export default function items() {
+  return (<div>items</div>
+  )
+}
+
 // import React, { useEffect, useState} from 'react';
 // import {Link} from 'react-router-dom';
 // import itemModel from '../models/itemsModel';
