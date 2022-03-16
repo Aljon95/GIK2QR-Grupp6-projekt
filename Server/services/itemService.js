@@ -7,6 +7,7 @@ const {
 const validate = require('validate.js');
 const item = require('../models/item');
 
+
 const constraints = {
     title: {
         length:{
@@ -83,8 +84,11 @@ async function create(item){
         return createResponseError(422, invalidData);
     }   
     try {
-        //await inväntar skapandet
+        //sätter endDate till 30 dagar efter nuvarande tiden
+        let time = new Date();
+        item.endDate = time.setDate(time.getDate() + 30)
         const newItem = await db.item.create(item);
+        
 
         return createResponseSuccess(newItem);
     } catch (error) {
@@ -144,6 +148,7 @@ function _formatItem(item) {
         description: item.description,
         createdAt: item.createdAt,
         updatedAt: item.updatedAt,
+        endDate: item.endDate,
         seller: {
             id: item.user.id,
             email: item.user.email,

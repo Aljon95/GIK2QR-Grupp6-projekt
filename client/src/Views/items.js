@@ -1,8 +1,8 @@
 import React, { useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import ResourceModel from '../models/resourceModel';
-import {Chip} from '@mui/material'
-import { borderRadius } from '@mui/system';
+
+
 
 export default function Items(props) {
 const resourceModel = new ResourceModel("items");
@@ -16,7 +16,6 @@ useEffect(() => {
         setitems(items);
     })
 }, []);
-console.log(items);
 return (
     <ul>
         {items.length > 0 && 
@@ -37,7 +36,10 @@ return (
                             <br/>
                             Senaste bud: {item.bids[0]}kr
                         </p>
-                        <p>Upplagd: {item.createdAt}</p>
+                        <p>
+                            Upplagd: {item.createdAt} <br/>
+                            Slut datum: {item.endDate}
+                        </p>
                         {item.body}
                     </li>
                 );

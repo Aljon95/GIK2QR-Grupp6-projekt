@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
             },
             description: DataTypes.TEXT,
             startingPrice: DataTypes.DOUBLE,
+            endDate: DataTypes.DATE,
         },
         {underscored: true}
     );

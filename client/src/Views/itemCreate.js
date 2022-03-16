@@ -3,8 +3,8 @@ import React from 'react'
 
 
 
-//ändra, ta bort osv
+//skapa föremål
 export default function itemEdit() {
-  return (<div>ItemEdit</div>
+  return (<div>ItemCreate</div>
   )
 }
