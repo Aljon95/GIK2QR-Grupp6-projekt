@@ -1,7 +1,21 @@
+<<<<<<< HEAD
+import React from 'react'
+
+export default function items() {
+  return (<div>items</div>
+  )
+}
+
+// import React, { useEffect, useState} from 'react';
+// import {Link} from 'react-router-dom';
+// import itemModel from '../models/itemsModel';
+// import {Chip} from '@mui/material'
+=======
 import React, { useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import ResourceModel from '../models/resourceModel';
 import {Chip} from '@mui/material'
+>>>>>>> 58eb2d4733f2fa7366423cf1994cca1aeccfcced
 
 export default function Items(props) {
 const resourceModel = new ResourceModel("items");
