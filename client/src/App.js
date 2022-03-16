@@ -5,6 +5,7 @@ import Home from './Views/Home';
 import items from './Views/items';
 import itemEdit from './Views/itemEdit';
 import itemDetail from './Views/itemDetail';
+import itemCreate from './Views/itemCreate';
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
           }}>
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route exact path='/items/new' component={itemEdit} />
+            <Route exact path='/items/new' component={itemCreate} />
             <Route exact path='/items/:id' component={itemDetail} />
             <Route exact path='/items/:id/edit' component={itemEdit} />
             <Route exact path='/items/' component={items} />
