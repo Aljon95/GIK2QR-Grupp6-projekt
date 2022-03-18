@@ -58,14 +58,23 @@ async function addBid(id, bid){
         where: {id},
         include: [db.bid]
     });
-    const itembids = item.bids;
     let lowBid = false;
+    //console.log(item.bids, '****************************************************');
+    const itembids = item.bids;
+    if (itembids) {
+    
     itembids.map((oldBid) => {
-        if (item.startingPrice > bid.amount ||  oldBid.amount > bid.amount) {
+        if (oldBid.amount > bid.amount) {
             console.log(item.startingPrice, bid.amount)
             lowBid = true;
         }
     })
+    }
+    if (item.startingPrice > bid.amount) {
+        console.log(item.startingPrice, bid.amount)
+        lowBid = true;
+    }
+
     if (lowBid) {
         return createResponseError(422, 'Ditt bud måste vara högre än det senaste budet');
     }

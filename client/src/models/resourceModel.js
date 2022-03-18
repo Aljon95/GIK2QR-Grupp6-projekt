@@ -6,7 +6,8 @@ export default class ResourceModel {
     this.resourceUrl = resourceUrl;
   }
 
-  async addBid(id, bid) {
+  async addBid(id, bid=0) {
+    console.log(id, bid);
     const result = await api.post(
       `${this.resourceUrl}/${id}/addBid`,
       bid
