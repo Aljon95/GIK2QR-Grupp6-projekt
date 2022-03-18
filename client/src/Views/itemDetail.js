@@ -33,12 +33,12 @@ export default class ItemDetail extends React.Component {
   onChange(e) {
     const field = e.target.name;
     const value = e.target.value;
-    this.setState({ bid: { ...this.state.item, [field]: value } });
+    this.setState({ bid: { ...this.state.bid, [field]: value } });
   }
 
   addBid() {
-      this.resourceModel.addBid(this.state.bid).then(() => {
-        window.location.href = `/items/${this.state.item.id}/addBid`;
+      this.resourceModel.addBid(this.id ,this.state.bid.userId, this.state.bid.bid).then(() => {
+        window.location.href = `/items/${this.id}/addBid`;
       });
   }
 
@@ -76,6 +76,7 @@ export default class ItemDetail extends React.Component {
   // }
   render() {
     const item = this.state.item;
+    const bid = this.state.bid;
   return(
     <>
       {item.seller ? (
@@ -100,13 +101,31 @@ export default class ItemDetail extends React.Component {
               </li>)
             })}
       </ul>
-      <form>
-        <label htmlFor='bid'>Ditt Bud</label>
-        <input type='INTEGER' id='bid' name='bid'></input>
+      <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField
+              name='userId'
+              label='userId'
+              value={bid.userId}
+              onChange={this.onChange}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              name='bid'
+              label='bid'
+              value={bid.bid}
+              onChange={this.onChange}
+              fullWidth
+              multiline
+              minRows={7}
+            />
+          </Grid>
+          </Grid>
       <Button variant='contained' color='primary' onClick={this.addBid}>
             Lägg Bud
       </Button>
-      </form>
     </>
   );
     }

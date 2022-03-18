@@ -6,10 +6,10 @@ export default class ResourceModel {
     this.resourceUrl = resourceUrl;
   }
 
-  async addBid(id, bid=0) {
-    console.log(id, bid);
+  async addBid(itemId, userId, bid) {
+    console.log('item', itemId, 'user', userId, 'bid', bid);
     const result = await api.post(
-      `${this.resourceUrl}/${id}/addBid`,
+      `${this.resourceUrl}/${itemId}/addBid`,
       bid
     );
     if (result.status === 200) return result.data;
