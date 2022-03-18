@@ -7,13 +7,19 @@ export default class ResourceModel {
   }
 
   async addBid(itemId, userId, bid) {
-    console.log('item', itemId, 'user', userId, 'bid', bid);
+
+    bid = { userId: userId, amount: bid}
+    console.log('item', itemId, 'user', typeof userId, 'bid', bid);
     const result = await api.post(
       `${this.resourceUrl}/${itemId}/addBid`,
       bid
     );
-    if (result.status === 200) return result.data;
-    else {
+    if (result.status === 200) { 
+      return result.data;
+    } else if (result.status === 422) {
+      console.log('test')
+    } else {
+      
       console.log(result.status);
       console.log(result.data);
     }
