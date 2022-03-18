@@ -59,10 +59,9 @@ async function addBid(id, bid){
         include: [db.bid]
     });
     let lowBid = false;
-    //console.log(item.bids, '****************************************************');
+    
     const itembids = item.bids;
     if (itembids) {
-    
     itembids.map((oldBid) => {
         if (oldBid.amount > bid.amount) {
             console.log(item.startingPrice, bid.amount)
