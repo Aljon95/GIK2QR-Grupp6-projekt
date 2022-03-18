@@ -15,7 +15,6 @@ export default class ItemDetail extends React.Component {
     this.onDelete = this.onDelete.bind(this);
   }
   fetchItem() {
-    console.log('hello world')
     this.id = this.props.match.params.id;
     this.resourceModel.getById(this.id).then((item) => {
       this.setState({ item });
@@ -38,7 +37,8 @@ export default class ItemDetail extends React.Component {
 
   addBid() {
       this.resourceModel.addBid(this.id ,this.state.bid.userId, this.state.bid.bid).then(() => {
-        window.location.href = `/items/${this.id}/addBid`;
+        //window.location.href = `/items/${this.id}/`;
+       
       });
   }
 
@@ -122,10 +122,11 @@ export default class ItemDetail extends React.Component {
               minRows={7}
             />
           </Grid>
-          </Grid>
+          
       <Button variant='contained' color='primary' onClick={this.addBid}>
             Lägg Bud
       </Button>
+      </Grid>
     </>
   );
     }

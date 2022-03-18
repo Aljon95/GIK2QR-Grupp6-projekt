@@ -49,8 +49,9 @@ async function getAll(){
         return createResponseError(error.status, error.message);
     }
 }
-
+            // id = id , bid = object med userId och amount
 async function addBid(id, bid){
+    console.log('id',id,'bid',bid)
     if(!id){
         return createResponseError(422, 'Id is required');
     } 
@@ -63,9 +64,10 @@ async function addBid(id, bid){
     const itembids = item.bids;
     if (itembids) {
     itembids.map((oldBid) => {
-        if (oldBid.amount > bid.amount) {
+        if (oldBid.amount >= bid.amount) {
             console.log(item.startingPrice, bid.amount)
             lowBid = true;
+
         }
     })
     }
@@ -76,7 +78,7 @@ async function addBid(id, bid){
 
     if (lowBid) {
         return createResponseError(422, 'Ditt bud måste vara högre än det senaste budet');
-    }
+    } else {
     try {
         bid.itemId = id;
         const newBid = await db.bid.create(bid);
@@ -84,6 +86,7 @@ async function addBid(id, bid){
     } catch (error) {
         return createResponseError(error.status, error.message);
     }
+}
 }
 
 async function create(item){
