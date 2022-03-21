@@ -5,7 +5,7 @@ import { toDateTimeString } from '../helper/formatting';
 export default function SmallCardItem({item}) {
     return(
         <Grid xs={6} md={4} padding="1rem">
-            <Card sx={{ maxWidth: 345 }}>
+            <Card sx={{ maxWidth: 345 }} style={{backgroundColor: "#e6e6e6"}}>
                 <CardMedia
                     component="img"
                     height="240"
@@ -13,7 +13,7 @@ export default function SmallCardItem({item}) {
                     alt="No image"
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography gutterBottom variant="h5" component="div" color="text.primary">
                         {item.title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
@@ -26,7 +26,7 @@ export default function SmallCardItem({item}) {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small" style={{backgroundColor: "pink"}}>
+                    <Button size="small">
                           <a href={`/items/${item.id}`}>Titta vidare</a>
                     </Button>
                 </CardActions>

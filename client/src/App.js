@@ -11,10 +11,11 @@ function App() {
   return (
     <div className='App'>
       <Router>
-        <h1 >Auktion</h1>
-        <AppBar position='static' style={{
-          backgroundColor: "#8D704A50"
+        <AppBar position='relative' style={{
+          backgroundColor: "#8D704A60"
         }}>
+          
+        <h1 style={{color: "#00aa00"}}>Auktion</h1>
           <Toolbar>
             <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
               <Button variant= "contained" color ="info" style={{
