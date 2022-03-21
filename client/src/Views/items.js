@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import ResourceModel from '../models/resourceModel';
-import {Grid, Paper, Typography } from '@mui/material';
+import {Grid, Card, CardMedia, CardActions, CardContent, Typography, Button } from '@mui/material';
 
 
 
@@ -26,24 +26,31 @@ return (
         {items.length > 0 && 
             items.map(item => {
                 return (
-                    <Grid xs={6} md={4}>
-                            <Link to = {`/items/${item.id}`}>Föremål: {item.title}</Link>
-                        <br />
-                                <img src ={item.imageUrl} style={{width: "200px", height: '200px'}} />
-                        <p>
-                            <Link to={`/users/${item.seller.id}/items`}>
-                            Säljare: {item.seller.firstName}
-                            </Link>
-                            <br/>
-                            Utgångspris: {item.startingPrice}kr
-                            <br/>
-                            Senaste bud: {item.bids[0]}kr
-                        </p>
-                        <p>
-                            Upplagd: {item.createdAt} <br/>
-                            Slut datum: {item.endDate}
-                        </p>
-                        {item.body}
+                    <Grid xs={6} md={4} padding="1rem">
+                        <Card sx={{ maxWidth: 345 }}>
+                            <CardMedia
+                                component="img"
+                                height="240"
+                                image={item.imageUrl}
+                                alt="No image"
+                            />
+                            <CardContent>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    {item.title}
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Utgångspris: {item.startingPrice}kr
+                                    <br/>
+                                    Senaste bud: {item.bids[0]}kr
+                                    <br/>
+                                    Upplagd: {item.createdAt} <br/>
+                                    Slut datum: {item.endDate}
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                              <Button size="small"><a href={`/items/${item.id}`}>Titta vidare</a></Button>
+                            </CardActions>
+                        </Card>
                     </Grid>   
                 );
             })}
