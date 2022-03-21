@@ -6,15 +6,13 @@ import items from './Views/items';
 import itemEdit from './Views/itemEdit';
 import itemDetail from './Views/itemDetail';
 import itemCreate from './Views/itemCreate';
-import Fab from '@mui/material/Fab';
-import EditIcon from '@mui/icons-material/Edit';
 
 function App() {
   return (
     <div className='App'>
       <Router>
         <h1>Auktion</h1>
-        <AppBar position='static'>
+        <AppBar position='relative'>
           <Toolbar>
             <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
               <Button variant= "contained" color ="info" ><Link to='/'>Hem</Link></Button>
