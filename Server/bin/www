@@ -26,13 +26,8 @@
   */
  const db = require("../models/");
  db.sequelize
-<<<<<<< HEAD
-// .sync()
-.sync({ force: true })
-=======
 .sync()
 // .sync({ force: true })
->>>>>>> 66a2c9591308f57f686f282e73fdc84dc482791d
  .then(() => {
    server.listen(port, () => {
      console.log(`Server running on localhost:${port}`);
