@@ -3,7 +3,7 @@ import ResourceModel from '../models/resourceModel';
 import { TextField, Button, Grid } from '@mui/material';
 
 export default class itemEdit extends React.Component {
-  state = { item: {userId: '', title: '', description: '', startingPrice: '', seller: {}, } };
+  state = { item: {userId: '', title: '', description: '', startingPrice: '',imageUrl: '', seller: {}, } };
   resourceModel = null;
   id = 0;
   constructor(props) {
@@ -73,6 +73,16 @@ export default class itemEdit extends React.Component {
               minRows={7}
             />
           </Grid>
+          <Grid item xs={12}>
+          <TextField
+            name='imageUrl'
+            label='Bildlänk (max 200 tecken)'
+            value={item.imageUrl}
+            onChange={this.onChange}
+            fullWidth
+            multiline
+          />
+        </Grid>
         <Grid
           item
           xs={12}

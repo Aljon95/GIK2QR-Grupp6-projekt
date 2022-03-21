@@ -86,6 +86,7 @@ export default class ItemDetail extends React.Component {
               <Link to={`/items/${item.id}/edit`}></Link>
 </Fab>
           <h2>{item.title}</h2>
+          <img src ={item.imageUrl} style={{width: "200px", height: '200px'}} />
           <p>Säljare: {item.seller.firstName}</p>
           <p>Föremålsbeskrivning: <br/>{item.description}</p>
         </div>
