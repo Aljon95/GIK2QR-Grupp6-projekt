@@ -11,17 +11,17 @@ function App() {
   return (
     <div className='App'>
       <Router>
-        <h1>auktion</h1>
+        <h1>Auktion</h1>
         <AppBar position='static'>
           <Toolbar>
             <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-              <Link to='/'>Hem</Link>
+              <Button variant= "contained" color ="info" ><Link to='/'>Hem</Link></Button>
             </Typography>
-            <Button color='inherit'>
-              <Link to='/items/'>Visa alla saker</Link>
+            <Button variant= "contained" color ="info">
+              <Link to='/items/'>Visa alla Auktioner</Link>
             </Button>
-            <Button color='inherit'>
-              <Link to='/items/new'>Skapa sak</Link>
+            <Button variant= "contained">
+              <Link to='/items/new'>Skapa Auktion</Link>
             </Button>
           </Toolbar>
         </AppBar>
