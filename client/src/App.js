@@ -17,10 +17,10 @@ function App() {
             <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
               <Button variant= "contained" color ="info" ><Link to='/'>Hem</Link></Button>
             </Typography>
-            <Button variant= "contained" color ="info">
+            <Button variant= "contained" color ="info" margin="1rem">
               <Link to='/items/'>Visa alla Auktioner</Link>
             </Button>
-             <Button variant= "contained" color ="info" >
+            <Button variant= "contained" color ="info" >
               <Link to='/items/new'>Skapa Auktion</Link>
             </Button>
           </Toolbar>
