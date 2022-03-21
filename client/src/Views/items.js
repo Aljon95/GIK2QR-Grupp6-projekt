@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import ResourceModel from '../models/resourceModel';
-import {Grid } from '@mui/material';
+import {Grid, Paper, Typography } from '@mui/material';
 
 
 
@@ -22,24 +22,15 @@ useEffect(() => {
         console.log("image",item);
     })}
 return (
-    <ul>
-        <Grid container spacing={2}>
+    <Grid container spacing={2}>
         {items.length > 0 && 
             items.map(item => {
                 return (
-                    
                     <Grid xs={6} md={4}>
-                    <li key = {`item_${item.id}`}>
                             <Link to = {`/items/${item.id}`}>Föremål: {item.title}</Link>
                         <br />
-
-                        {/* <img src ={item.imageUrl} style={{width: "200px", height: '200px'}} /> */}
-                           
                                 <img src ={item.imageUrl} style={{width: "200px", height: '200px'}} />
-                            
                         <p>
-                           
-
                             <Link to={`/users/${item.seller.id}/items`}>
                             Säljare: {item.seller.firstName}
                             </Link>
@@ -53,11 +44,9 @@ return (
                             Slut datum: {item.endDate}
                         </p>
                         {item.body}
-                    </li>
-                    </Grid>
-                    
+                    </Grid>   
                 );
             })}
-            </Grid>
-    </ul>);  
+        </Grid>
+    );  
 }
