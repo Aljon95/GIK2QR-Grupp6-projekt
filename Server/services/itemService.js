@@ -94,7 +94,7 @@ async function create(item){
         return createResponseError(422, invalidData);
     }   
     try {
-        if (!item.imageUrl || item.imageUrl=="") {
+        if (item.imageUrl ==null || item.imageUrl=="") {
             item.imageUrl = "https://i.imgur.com/ha5A03x.jpg";
         }
         //sätter endDate till 30 dagar efter nuvarande tiden
