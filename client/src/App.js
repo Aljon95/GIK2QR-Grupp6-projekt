@@ -18,21 +18,26 @@ function App() {
         <h1 style={{color: "#00aa00"}}>Auktion</h1>
           <Toolbar>
             <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
+            <Link to='/'>
               <Button variant= "contained" color ="info" style={{
           backgroundColor: "#8D704A"
-        }} ><Link to='/'>Hem</Link></Button>
+        }} >Hem</Button></Link>
             </Typography>
+            <Link to='/items/'>
             <Button variant= "contained" color ="info" style={{
           backgroundColor: "#8D704A",
           marginRight: "1rem"
         }}>
-              <Link to='/items/'>Visa alla Auktioner</Link>
+              Visa alla Auktioner
             </Button>
+            </Link>
+            <Link to='/items/new'>
             <Button variant= "contained" color ="info" style={{
           backgroundColor: "#8D704A"
         }} >
-              <Link to='/items/new'>Skapa Auktion</Link>
+              Skapa Auktion
             </Button>
+            </Link>
           </Toolbar>
         </AppBar>
 

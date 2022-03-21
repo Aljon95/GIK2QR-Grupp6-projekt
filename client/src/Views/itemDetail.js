@@ -3,6 +3,10 @@ import ResourceModel from '../models/resourceModel';
 import {TextField, Button, Grid} from '@mui/material';
 import Fab from '@mui/material/Fab';
 import EditIcon from '@mui/icons-material/Edit';
+import { toDateTimeString } from '../helper/formatting';
+
+
+
 export default class ItemDetail extends React.Component {
   state = { item: {userId: '', title: '', description: '', startingPrice: '', seller: {}, },bid: {userId: '', itemId: '', bid: '', } };
   resourceModel = null;
@@ -62,16 +66,18 @@ export default class ItemDetail extends React.Component {
             <Fab color="secondary" aria-label="edit"><EditIcon/></Fab>
           </a>
           <h2>{item.title}</h2>
-          <img src ={item.imageUrl} style={{width: "200px", height: '200px'}} />
+          
           <p>Säljare: {item.seller.firstName}</p>
           <p>Föremålsbeskrivning: <br/>{item.description}</p>
+          <p>Upplagd: {toDateTimeString(item.createdAt)} </p>
+          <p>Slut datum: {toDateTimeString(item.endDate)}</p>
         </div>
       ) : (
         <p>Laddar</p>
       )}
       </Grid>
 
-      {/* <ul>
+       <ul>
         <p>Tidigare bud</p>
             {item.bids && item.bids.map(bid => {
               return (
@@ -105,8 +111,8 @@ export default class ItemDetail extends React.Component {
           
       <Button variant='contained' color='primary' onClick={this.addBid}>
             Lägg Bud
-      </Button> */}
-      {/* </Grid> */}
+      </Button>
+      </Grid> 
     </Grid>
   );
     }
