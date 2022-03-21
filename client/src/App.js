@@ -22,7 +22,7 @@ function App() {
             <Button variant= "contained" color ="info">
               <Link to='/items/'>Visa alla Auktioner</Link>
             </Button>
-            <Button variant= "contained">
+             <Button variant= "contained" color ="info" >
               <Link to='/items/new'>Skapa Auktion</Link>
             </Button>
           </Toolbar>
