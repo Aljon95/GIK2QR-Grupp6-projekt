@@ -23,17 +23,20 @@ useEffect(() => {
     })}
 return (
     <ul>
+        <Grid container spacing={2}>
         {items.length > 0 && 
             items.map(item => {
                 return (
+                    
+                    <Grid xs={6} md={4}>
                     <li key = {`item_${item.id}`}>
                             <Link to = {`/items/${item.id}`}>Föremål: {item.title}</Link>
                         <br />
 
                         {/* <img src ={item.imageUrl} style={{width: "200px", height: '200px'}} /> */}
-                            <Grid item xs={12} md={4}>
+                           
                                 <img src ={item.imageUrl} style={{width: "200px", height: '200px'}} />
-                            </Grid>
+                            
                         <p>
                            
 
@@ -51,7 +54,10 @@ return (
                         </p>
                         {item.body}
                     </li>
+                    </Grid>
+                    
                 );
             })}
+            </Grid>
     </ul>);  
 }
