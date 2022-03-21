@@ -37,8 +37,7 @@ export default class ItemDetail extends React.Component {
 
   addBid() {
       this.resourceModel.addBid(this.id ,this.state.bid.userId, this.state.bid.bid).then(() => {
-        //window.location.href = `/items/${this.id}/`;
-       
+        window.location.href = `/items/${this.id}/`;
       });
   }
 

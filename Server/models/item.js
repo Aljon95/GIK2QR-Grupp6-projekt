@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
                     len:[2, 100]
                 }
             },
+            imageUrl: DataTypes.STRING(200),
             description: DataTypes.TEXT,
             startingPrice: DataTypes.DOUBLE,
             endDate: DataTypes.DATE,
