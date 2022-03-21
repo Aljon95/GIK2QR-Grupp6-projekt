@@ -1,6 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import ResourceModel from '../models/resourceModel';
+import {Grid } from '@mui/material';
 
 
 
@@ -16,6 +17,10 @@ useEffect(() => {
         setitems(items);
     })
 }, []);
+{items.length > 0 && 
+    items.map(item => {
+        console.log("image",item);
+    })}
 return (
     <ul>
         {items.length > 0 && 
@@ -26,7 +31,11 @@ return (
                         <br />
 
                         {/* <img src ={item.imageUrl} style={{width: "200px", height: '200px'}} /> */}
+                            <Grid item xs={12} md={4}>
+                                <img src ={item.imageUrl} style={{width: "200px", height: '200px'}} />
+                            </Grid>
                         <p>
+                           
 
                             <Link to={`/users/${item.seller.id}/items`}>
                             Säljare: {item.seller.firstName}

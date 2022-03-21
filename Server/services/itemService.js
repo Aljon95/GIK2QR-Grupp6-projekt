@@ -5,7 +5,6 @@ const {
     createResponseMessage
 } = require('../helper/responseHelper');
 const validate = require('validate.js');
-const item = require('../models/item');
 
 
 const constraints = {
@@ -95,6 +94,9 @@ async function create(item){
         return createResponseError(422, invalidData);
     }   
     try {
+        if (!item.imageUrl || item.imageUrl=="") {
+            item.imageUrl = "https://i.imgur.com/ha5A03x.jpg";
+        }
         //sätter endDate till 30 dagar efter nuvarande tiden
         let time = new Date();
         item.endDate = time.setDate(time.getDate() + 30)
@@ -156,6 +158,7 @@ function _formatItem(item) {
         id: item.id,
         title: item.title,
         startingPrice: item.startingPrice,
+        imageUrl: item.imageUrl,
         description: item.description,
         createdAt: item.createdAt,
         updatedAt: item.updatedAt,
