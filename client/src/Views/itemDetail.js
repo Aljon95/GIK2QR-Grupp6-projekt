@@ -2,7 +2,8 @@ import React, { useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import ResourceModel from '../models/resourceModel';
 import {TextField, Button, Grid} from '@mui/material';
-
+import Fab from '@mui/material/Fab';
+import EditIcon from '@mui/icons-material/Edit';
 export default class ItemDetail extends React.Component {
   state = { item: {userId: '', title: '', description: '', startingPrice: '', seller: {}, },bid: {userId: '', itemId: '', bid: '', } };
   resourceModel = null;
@@ -80,9 +81,10 @@ export default class ItemDetail extends React.Component {
     <>
       {item.seller ? (
         <div>
-          <Button variant = 'contained' color='secondary'>
-            <Link to={`/items/${item.id}/edit`}>Ändra</Link>
-          </Button>
+<Fab color="secondary" aria-label="edit">
+  <EditIcon />
+              <Link to={`/items/${item.id}/edit`}></Link>
+</Fab>
           <h2>{item.title}</h2>
           <img src ={item.imageUrl} style={{width: "200px", height: '200px'}} />
           <p>Säljare: {item.seller.firstName}</p>
