@@ -11,16 +11,25 @@ function App() {
   return (
     <div className='App'>
       <Router>
-        <h1>Auktion</h1>
-        <AppBar position='static'>
+        <h1 >Auktion</h1>
+        <AppBar position='static' style={{
+          backgroundColor: "#8D704A50"
+        }}>
           <Toolbar>
             <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-              <Button variant= "contained" color ="info" ><Link to='/'>Hem</Link></Button>
+              <Button variant= "contained" color ="info" style={{
+          backgroundColor: "#8D704A"
+        }} ><Link to='/'>Hem</Link></Button>
             </Typography>
-            <Button variant= "contained" color ="info" margin="1rem">
+            <Button variant= "contained" color ="info" style={{
+          backgroundColor: "#8D704A",
+          marginRight: "1rem"
+        }}>
               <Link to='/items/'>Visa alla Auktioner</Link>
             </Button>
-            <Button variant= "contained" color ="info" >
+            <Button variant= "contained" color ="info" style={{
+          backgroundColor: "#8D704A"
+        }} >
               <Link to='/items/new'>Skapa Auktion</Link>
             </Button>
           </Toolbar>

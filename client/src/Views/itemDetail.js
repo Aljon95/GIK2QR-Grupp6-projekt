@@ -1,5 +1,4 @@
 import React, { useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
 import ResourceModel from '../models/resourceModel';
 import {TextField, Button, Grid} from '@mui/material';
 import Fab from '@mui/material/Fab';
@@ -47,38 +46,16 @@ export default class ItemDetail extends React.Component {
       window.location.href = '/';
     });
   }
-  // ItemDetail(props) {
-  // const id = props.match.params.id;
-  // const isValidId = !isNaN(id);
-  // const resourceModel = new ResourceModel("items");
-  // const [item, setItem] = useState ({});
-  // const onBid = resourceModel.addBid(id);
-  
-  // useEffect(() => {
-  //   if (isValidId) {
-  //     resourceModel.getById(id).then(item => {
-  //       setItem(item);
-  //   });
-  //   }
-      
-  // }, []);
-  // useEffect(() => {
-  //     resourceModel.addBid(id).then(item => {
-  //       setItem(item);
-  //   });
-      
-  // }, []);
-  //  onBid() {
-  //    console.log('ALBIN');
-  //   this.resourceModel.addBid(this.state.item).then(() => {
-  //     window.location.href = `/items/${this.id}`;
-  //   });
-  // }
   render() {
     const item = this.state.item;
     const bid = this.state.bid;
   return(
-    <>
+    <Grid container spacing={2} columns={2}>
+      <Grid xs={1}>
+        <img src ={item.imageUrl} style={{width: "25rem", height: '25rem'}}/>
+      </Grid>
+      <Grid xs={1}>
+        
       {item.seller ? (
         <div>
           <a href={`/items/${item.id}/edit`}>
@@ -92,7 +69,9 @@ export default class ItemDetail extends React.Component {
       ) : (
         <p>Laddar</p>
       )}
-      <ul>
+      </Grid>
+
+      {/* <ul>
         <p>Tidigare bud</p>
             {item.bids && item.bids.map(bid => {
               return (
@@ -126,9 +105,9 @@ export default class ItemDetail extends React.Component {
           
       <Button variant='contained' color='primary' onClick={this.addBid}>
             Lägg Bud
-      </Button>
-      </Grid>
-    </>
+      </Button> */}
+      {/* </Grid> */}
+    </Grid>
   );
     }
   }
