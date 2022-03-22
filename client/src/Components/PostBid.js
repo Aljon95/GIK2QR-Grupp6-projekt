@@ -14,28 +14,24 @@ export default function PostBid({onBid}) {
            
 
       <Grid container spacing={2}>
-          <Grid item xs={12}>
+          <Grid item xs={12} marginRight= "40rem">
             <TextField
               name='userId'
               label='userId'
               value={userId}
               onChange={(e) => setUserId(e.target.value)}
-              fullWidth
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} marginRight= "40rem" marginBottom="8px">
             <TextField
               name='bid'
               label='bid'
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              fullWidth
-              multiline
-              minRows={7}
             />
           </Grid>
           
-      <Button variant='contained' color='primary' onClick={() => {
+      <Button style={{marginLeft: "5rem"}} variant='contained' color='primary' onClick={() => {
           onBid({ userId, amount});
           setUserId('');
           setAmount('');
