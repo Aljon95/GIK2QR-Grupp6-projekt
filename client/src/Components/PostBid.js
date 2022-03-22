@@ -1,10 +1,5 @@
-import React, { useEffect, useState} from 'react';
-import ResourceModel from '../models/resourceModel';
+import React, {useState} from 'react';
 import {TextField, Button, Grid} from '@mui/material';
-import Fab from '@mui/material/Fab';
-import EditIcon from '@mui/icons-material/Edit';
-import { toDateTimeString } from '../helper/formatting';
-
 
 export default function PostBid({onBid}) {
     const [userId, setUserId] = useState('');

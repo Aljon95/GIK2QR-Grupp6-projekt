@@ -1,6 +1,5 @@
-import React, { useEffect, useState} from 'react';
-import ResourceModel from '../models/resourceModel';
-import {TextField, Button, Grid} from '@mui/material';
+import React from 'react';
+import {Grid} from '@mui/material';
 import Fab from '@mui/material/Fab';
 import EditIcon from '@mui/icons-material/Edit';
 import { toDateTimeString } from '../helper/formatting';

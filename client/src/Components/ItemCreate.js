@@ -1,6 +1,5 @@
-import React, { useEffect, useState} from 'react';
-import ResourceModel from '../models/resourceModel';
-import { TextField, Button, Chip, Grid } from '@mui/material';
+import React, {useState} from 'react';
+import { TextField, Button, Grid } from '@mui/material';
 
 
 export default function ItemCreate({onCreate}) {

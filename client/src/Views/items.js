@@ -17,11 +17,6 @@ useEffect(() => {
         setitems(items);
     })
 }, []);
-{items.length > 0 && 
-    items.map(item => {
-        console.log("image",item);
-    })}
-
     return (
         <Grid container spacing={2}>
             {items.length > 0 &&

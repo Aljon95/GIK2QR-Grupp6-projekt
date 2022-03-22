@@ -1,6 +1,6 @@
 import React from 'react';
 import ResourceModel from '../models/resourceModel';
-import { TextField, Button, Grid } from '@mui/material';
+import ItemEdit from '../Components/ItemEdit'
 
 export default class itemEdit extends React.Component {
   state = { item: {userId: '', title: '', description: '', startingPrice: '',imageUrl: '', seller: {}, } };
@@ -9,7 +9,6 @@ export default class itemEdit extends React.Component {
   constructor(props) {
     super(props);
     this.resourceModel = new ResourceModel('items');
-    this.onChange = this.onChange.bind(this);
     this.onSave = this.onSave.bind(this);
     this.onDelete = this.onDelete.bind(this);
   }
@@ -31,14 +30,10 @@ export default class itemEdit extends React.Component {
     }
   }
 
-  onChange(e) {
-    const field = e.target.name;
-    const value = e.target.value;
-    this.setState({ item: { ...this.state.item, [field]: value } });
-  }
-
-  onSave() {
-      this.resourceModel.update(this.state.item).then(() => {
+  onSave(newEdit) {
+    const itemWithItemId = {id: this.id, title: newEdit.title, imageUrl: newEdit.imageUrl, description: newEdit.description};
+    console.log("id",this.id, "edit", newEdit)
+      this.resourceModel.update(itemWithItemId).then(() => {
         window.location.href = `/items/${this.state.item.id}`;
       });
   }
@@ -49,57 +44,10 @@ export default class itemEdit extends React.Component {
     });
   }
 
-    render() {
-      const item = this.state.item;
-      return (
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <TextField
-            style={{backgroundColor: "#e6e6e6"}}
-              name='title'
-              label='Titel'
-              value={item.title}
-              onChange={this.onChange}
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-            style={{backgroundColor: "#e6e6e6"}}
-              name='description'
-              label='Innehåll'
-              value={item.description}
-              onChange={this.onChange}
-              fullWidth
-              multiline
-              minRows={7}
-            />
-          </Grid>
-          <Grid item xs={12}>
-          <TextField
-          style={{backgroundColor: "#e6e6e6"}}
-            name='imageUrl'
-            label='Bildlänk (max 200 tecken)'
-            value={item.imageUrl}
-            onChange={this.onChange}
-            fullWidth
-            multiline
-          />
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          sx={{ display: 'flex', justifyContent: 'flex-end', gap: '.4rem' }}>
-          <Button variant='contained' color='primary' onClick={this.onSave}>
-            Spara
-          </Button>
-          {!isNaN(this.id) && this.id > 0 && (
-            <Button variant='contained' color='error' onClick={this.onDelete}>
-              Ta bort
-            </Button>
-          )}
-        </Grid>
-      </Grid>
+  render() {
+    const item = this.state.item;
+    return (
+<ItemEdit item={item} onEdit={this.onSave} onDelete={this.onDelete} /> 
     );
   }
 }
