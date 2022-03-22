@@ -4,6 +4,8 @@ import {TextField, Button, Grid} from '@mui/material';
 import Fab from '@mui/material/Fab';
 import EditIcon from '@mui/icons-material/Edit';
 import { toDateTimeString } from '../helper/formatting';
+import ItemInfo from '../Components/ItemInfo';
+import PostBid from '../Components/PostBid';
 
 
 
@@ -39,8 +41,8 @@ export default class ItemDetail extends React.Component {
     this.setState({ bid: { ...this.state.bid, [field]: value } });
   }
 
-  addBid() {
-      this.resourceModel.addBid(this.id ,this.state.bid.userId, this.state.bid.bid).then(() => {
+  addBid(newBid) {
+      this.resourceModel.addBid(this.id ,newBid.userId, newBid.amount).then(() => {//this.state.bid.userId, this.state.bid.bid
         window.location.href = `/items/${this.id}/`;
       });
   }
@@ -53,67 +55,14 @@ export default class ItemDetail extends React.Component {
   render() {
     const item = this.state.item;
     const bid = this.state.bid;
-  return(
-    <Grid container spacing={2} columns={2}>
-      <Grid xs={1}>
-        <img src ={item.imageUrl} style={{width: "25rem", height: '25rem'}}/>
+  return (
+    <>
+      <ItemInfo item={item} bid={bid}/>
+      <Grid>
+        <PostBid onBid={this.addBid} /> 
       </Grid>
-      <Grid xs={1}>
-        
-      {item.seller ? (
-        <div>
-          <a href={`/items/${item.id}/edit`}>
-            <Fab color="secondary" aria-label="edit"><EditIcon/></Fab>
-          </a>
-          <h2>{item.title}</h2>
-          
-          <p>Säljare: {item.seller.firstName}</p>
-          <p>Föremålsbeskrivning: <br/>{item.description}</p>
-          <p>Upplagd: {toDateTimeString(item.createdAt)} </p>
-          <p>Slut datum: {toDateTimeString(item.endDate)}</p>
-        </div>
-      ) : (
-        <p>Laddar</p>
-      )}
-      </Grid>
+    </>
 
-       <ul>
-        <p>Tidigare bud</p>
-            {item.bids && item.bids.map(bid => {
-              return (
-              <li key ={`bid_${bid.id}`}>
-                {bid}
-              
-              </li>)
-            })}
-      </ul>
-      <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <TextField
-              name='userId'
-              label='userId'
-              value={bid.userId}
-              onChange={this.onChange}
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              name='bid'
-              label='bid'
-              value={bid.bid}
-              onChange={this.onChange}
-              fullWidth
-              multiline
-              minRows={7}
-            />
-          </Grid>
-          
-      <Button variant='contained' color='primary' onClick={this.addBid}>
-            Lägg Bud
-      </Button>
-      </Grid> 
-    </Grid>
-  );
-    }
+    );
   }
+}
