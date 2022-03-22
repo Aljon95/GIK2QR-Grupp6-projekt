@@ -6,7 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { toDateTimeString } from '../helper/formatting';
 
 
-export default function SmallCardItem({item, bid}) {
+export default function ItemInfo({item, bid}) {
     return(
         <Grid container spacing={2} columns={2}>
       <Grid xs={1}>
@@ -23,6 +23,7 @@ export default function SmallCardItem({item, bid}) {
           
           <p>Säljare: {item.seller.firstName}</p>
           <p>Föremålsbeskrivning: <br/>{item.description}</p>
+          <p>Utgångspris: {item.startingPrice}kr</p>
           <p>Upplagd: {toDateTimeString(item.createdAt)} </p>
           <p>Slut datum: {toDateTimeString(item.endDate)}</p>
         </div>

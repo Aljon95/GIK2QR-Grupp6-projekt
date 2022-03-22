@@ -6,7 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { toDateTimeString } from '../helper/formatting';
 
 
-export default function SmallCardItem({onBid}) {
+export default function PostBid({onBid}) {
     const [userId, setUserId] = useState('');
     const [amount, setAmount] = useState('');
     return(
