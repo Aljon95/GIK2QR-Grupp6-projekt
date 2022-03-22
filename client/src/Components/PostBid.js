@@ -14,7 +14,6 @@ export default function PostBid({onBid}) {
            
 
       <Grid container spacing={2}>
-           <h2>hej</h2>
           <Grid item xs={12}>
             <TextField
               name='userId'
