@@ -13,9 +13,10 @@ export default function PostBid({onBid}) {
        
            
 
-      <Grid container spacing={2}>
+      <Grid  container spacing={2}>
           <Grid item xs={12} marginRight= "40rem">
             <TextField
+            style={{backgroundColor: "#e6e6e6"}}
               name='userId'
               label='userId'
               value={userId}
@@ -24,6 +25,7 @@ export default function PostBid({onBid}) {
           </Grid>
           <Grid item xs={12} marginRight= "40rem" marginBottom="8px">
             <TextField
+            style={{backgroundColor: "#e6e6e6"}}
               name='bid'
               label='bid'
               value={amount}

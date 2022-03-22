@@ -30,6 +30,7 @@ export default class itemCreate extends React.Component {
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <TextField
+          style={{backgroundColor: "#e6e6e6"}}
             name='userId'
             label='användar id'
             value={item.userId}
@@ -39,6 +40,7 @@ export default class itemCreate extends React.Component {
         </Grid>
         <Grid item xs={12}>
           <TextField
+          style={{backgroundColor: "#e6e6e6"}}
             name='title'
             label='Titel'
             value={item.title}
@@ -48,6 +50,7 @@ export default class itemCreate extends React.Component {
         </Grid>
         <Grid item xs={12}>
           <TextField
+          style={{backgroundColor: "#e6e6e6"}}
             name='imageUrl'
             label='Bildlänk (max 200 tecken)'
             value={item.imageUrl}
@@ -58,6 +61,7 @@ export default class itemCreate extends React.Component {
         </Grid>
         <Grid item xs={12}>
           <TextField
+          style={{backgroundColor: "#e6e6e6"}}
             name='description'
             label='Innehåll'
             value={item.description}
@@ -69,6 +73,7 @@ export default class itemCreate extends React.Component {
         </Grid>
         <Grid item xs={12}>
           <TextField
+          style={{backgroundColor: "#e6e6e6"}}
             name='startingPrice'
             label='utgångspris'
             value={item.startingPrice}

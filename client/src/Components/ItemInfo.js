@@ -8,7 +8,7 @@ import { toDateTimeString } from '../helper/formatting';
 
 export default function ItemInfo({item, bid}) {
     return(
-        <Grid container spacing={2} columns={2}>
+        <Grid container spacing={0} columns={2}>
       <Grid xs={1}>
         <img src ={item.imageUrl} style={{width: "25rem", height: '25rem'}}/>
       </Grid>
