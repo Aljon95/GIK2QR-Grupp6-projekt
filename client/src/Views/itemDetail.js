@@ -51,7 +51,7 @@ export default class ItemDetail extends React.Component {
     this.resourceModel.remove(this.id).then(() => {
       window.location.href = '/';
     });
-  }
+  } 
   render() {
     const item = this.state.item;
     const bid = this.state.bid;
