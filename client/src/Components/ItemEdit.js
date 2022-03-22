@@ -4,9 +4,11 @@ import React, {useState} from 'react';
 
 
 export default function ItemEdit({onEdit, onDelete, item}) {
-    const [title, setTitle] = useState(item.title);
+    
+    const [title, setTitle] = useState(`${item.title}`);
     const [description, setDescription] = useState(item.description);
     const [imageUrl, setImageUrl] = useState(item.imageUrl);
+    
     return (
         <Grid container spacing={2}>
         <Grid item xs={12}>
