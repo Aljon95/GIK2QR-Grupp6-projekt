@@ -13,9 +13,7 @@ export default class ItemDetail extends React.Component {
   constructor(props) {
     super(props);
     this.resourceModel = new ResourceModel('items');
-    this.onChange = this.onChange.bind(this);
     this.addBid = this.addBid.bind(this);
-    this.onDelete = this.onDelete.bind(this);
   }
   fetchItem() {
     this.id = this.props.match.params.id;
@@ -27,28 +25,12 @@ export default class ItemDetail extends React.Component {
     this.fetchItem();
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
-      this.fetchItem();
-    }
-  }
-  onChange(e) {
-    const field = e.target.name;
-    const value = e.target.value;
-    this.setState({ bid: { ...this.state.bid, [field]: value } });
-  }
-
   addBid(newBid) {
       this.resourceModel.addBid(this.id ,newBid.userId, newBid.amount).then(() => {//this.state.bid.userId, this.state.bid.bid
         window.location.href = `/items/${this.id}/`;
       });
   }
 
-  onDelete() {
-    this.resourceModel.remove(this.id).then(() => {
-      window.location.href = '/';
-    });
-  } 
   render() {
     const item = this.state.item;
     const bid = this.state.bid;

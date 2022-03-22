@@ -14,6 +14,7 @@ export default class itemEdit extends React.Component {
   }
 
   fetchItem() {
+    console.log("fetch run")
     this.id = this.props.match.params.id;
     this.resourceModel.getById(this.id).then((item) => {
       this.setState({ item });
@@ -43,11 +44,12 @@ export default class itemEdit extends React.Component {
       window.location.href = '/';
     });
   }
-
   render() {
+    console.log("render run")
     const item = this.state.item;
     return (
-<ItemEdit item={item} onEdit={this.onSave} onDelete={this.onDelete} /> 
+      <ItemEdit item={item} onEdit={this.onSave} onDelete={this.onDelete} /> 
     );
   }
+
 }
