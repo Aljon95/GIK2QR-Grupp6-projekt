@@ -18,7 +18,10 @@ function App() {
         <h1 style={{
                     color: "#000000",
                     fontSize: "2.5rem",
-                    fontFamily: " Brush Script MT, Brush Script Std, cursive"
+                    fontFamily: " Brush Script MT, Brush Script Std, cursive",
+                    margin: "1rem",
+                    padding: "0",
+                    textAlign: "left"
                   }}>
           Auktion
         </h1>
