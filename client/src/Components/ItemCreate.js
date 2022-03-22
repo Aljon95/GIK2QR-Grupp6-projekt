@@ -3,11 +3,6 @@ import ResourceModel from '../models/resourceModel';
 import { TextField, Button, Chip, Grid } from '@mui/material';
 
 
-
-
-
-
-
 export default function ItemCreate({onCreate}) {
     const [userId, setUserId] = useState('');
     const [title, setTitle] = useState('');
