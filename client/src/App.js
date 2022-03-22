@@ -15,7 +15,13 @@ function App() {
           backgroundColor: "#8D704A60"
         }}>
           
-        <h1 style={{color: "#00aa00"}}>Auktion</h1>
+        <h1 style={{
+                    color: "#000000",
+                    fontSize: "2.5rem",
+                    fontFamily: " Brush Script MT, Brush Script Std, cursive"
+                  }}>
+          Auktion
+        </h1>
           <Toolbar>
             <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
             <Link to='/'>
@@ -25,9 +31,9 @@ function App() {
             </Typography>
             <Link to='/items/'>
             <Button variant= "contained" color ="info" style={{
-          backgroundColor: "#8D704A",
-          marginRight: "1rem"
-        }}>
+                                                                backgroundColor: "#8D704A",
+                                                                marginRight: "1rem"
+                                                              }}>
               Visa alla Auktioner
             </Button>
             </Link>
