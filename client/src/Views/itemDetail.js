@@ -15,7 +15,8 @@ export default class ItemDetail extends React.Component {
     this.resourceModel = new ResourceModel('items');
     this.addBid = this.addBid.bind(this);
   }
-  fetchItem() {
+  async fetchItem() {
+    console.log("fetch")
     this.id = this.props.match.params.id;
     this.resourceModel.getById(this.id).then((item) => {
       this.setState({ item });
@@ -32,6 +33,7 @@ export default class ItemDetail extends React.Component {
   }
 
   render() {
+    console.log("render")
     const item = this.state.item;
     const bid = this.state.bid;
   return (

@@ -1,14 +1,10 @@
 import { TextField, Button, Grid } from '@mui/material';
 import React, {useState} from 'react';
 
-
-
 export default function ItemEdit({onEdit, onDelete, item}) {
-    
-    const [title, setTitle] = useState(`${item.title}`);
-    const [description, setDescription] = useState(item.description);
-    const [imageUrl, setImageUrl] = useState(item.imageUrl);
-    
+    let [title, setTitle] = useState(item.title);
+    let [description, setDescription] = useState(item.description);
+    let [imageUrl, setImageUrl] = useState(item.imageUrl);
     return (
         <Grid container spacing={2}>
         <Grid item xs={12}>
