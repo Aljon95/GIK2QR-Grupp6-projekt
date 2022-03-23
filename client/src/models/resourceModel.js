@@ -1,5 +1,6 @@
 import api from '../api';
 
+
 export default class ResourceModel {
   resourceUrl = '';
   constructor(resourceUrl) {
