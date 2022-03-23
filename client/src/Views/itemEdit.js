@@ -50,6 +50,5 @@ export default class itemEdit extends React.Component {
     return (
       <ItemEdit item={item} onEdit={this.onSave} onDelete={this.onDelete} /> 
     );
-  }
-
+  } 
 }
